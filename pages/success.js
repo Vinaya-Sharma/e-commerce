@@ -1,0 +1,40 @@
+import React, {useState, useEffect} from 'react'
+import Link from 'next/link'
+import {BsBagCheckFill} from 'react-icons/bs'
+import {useStateContext} from '../context/StateContext'
+import {firework} from '../lib/Util'
+
+const Success = () => {
+    const {setcartItems, settotalPrice, settotalQuantities} = useStateContext()
+
+    useEffect(() => {
+      firework()
+      localStorage.clear()
+
+      setcartItems([])
+      settotalPrice(0)
+      settotalQuantities(0)
+    }, [] )
+
+  return (
+    <div className='success-wrapper'>
+      <div className='success' >
+      <p className='icon'>
+      <BsBagCheckFill/>
+      </p>
+      <h2>
+        Thank You For Your Order
+      </h2>
+      <p className='email-msg'>Check your email inbox for your reciept</p>
+      <p className='description'>If you have any questions please email 
+      <a className='email' href='mailto:vinayasharma@gmail.com'>order@example.com</a>
+       </p>
+       <Link href={'/'}>
+         <button type='button' width='300px' className='btn'>Continue Shopping</button>
+       </Link>
+      </div>
+    </div>
+  )
+}
+
+export default Success
